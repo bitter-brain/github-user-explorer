@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { fetchUser, fetchUserRepos } from "../api/userApi"
-import type { User, Repo } from "./userTypes"
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchUser, fetchUserRepos } from '../api/userApi'
+import type { User, Repo } from './userTypes'
 
 interface UserState {
   user: User | null
@@ -35,12 +35,18 @@ export const loadRepos = createAsyncThunk<Repo[], string>(
   async (username: string) => {
     return await fetchUserRepos(username)
   }
-);
+)
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    clearUser(state) {
+      state.user = null;
+      state.repos = [];
+      state.error = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadUser.pending, (state) => {
@@ -64,4 +70,5 @@ const userSlice = createSlice({
   },
 })
 
+export const { clearUser } = userSlice.actions
 export default userSlice.reducer

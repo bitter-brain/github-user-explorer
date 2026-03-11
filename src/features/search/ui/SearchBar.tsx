@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react"
-import { debounce } from "../../../shared/lib/debounce"
+import { useEffect, useRef, useState } from 'react'
+import { debounce } from '../../../shared/lib/debounce'
 
 type Props = {
   onSearch: (value: string) => void
@@ -10,7 +10,11 @@ export const SearchBar = ({ onSearch }: Props) => {
   const debouncedSearch = useRef(debounce(onSearch, 500)).current
 
   useEffect(() => {
-    if (value.trim()) debouncedSearch(value.trim())
+    if (value.trim()) {
+      debouncedSearch(value.trim())
+    } else {
+      onSearch("")
+    }
   }, [value])
 
   return (
