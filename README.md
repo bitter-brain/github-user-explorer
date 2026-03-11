@@ -1,21 +1,26 @@
 # GitHub User Explorer
 
-React + TypeScript приложение для поиска пользователей GitHub.
+GitHub User Explorer is a small frontend application that allows users to search for GitHub profiles and view basic information about them.
 
-## Стек технологий
+
+## Tech Stack
+
 - React
 - TypeScript
 - Redux Toolkit
-- RTK Query / Axios
-- SCSS / BEM
-- Feature-Sliced Design
+- Axios
+- SCSS
+- BEM methodology
+- Feature-Sliced Design (FSD)
+- Vite
 
+## Features
 
-## Функционал
-- Поиск пользователей GitHub
-- Просмотр профиля и репозиториев
-- Loading и error states
-- Структура проекта с Feature-Sliced Design
+- Search for GitHub users by username
+- Display user profile information
+- View public repositories
+- Loading and error state handling
+- Clean and scalable project architecture
 
-
-https://github-user-explorer.vercel.app
+##
+https://vercel.com/bitter-brains-projects/github-user-explorer
