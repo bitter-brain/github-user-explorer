@@ -1,9 +1,8 @@
-React • TypeScript • RTK Query • Redux Toolkit • Vite • SCSS
-
 # GitHub User Explorer
 
 GitHub User Explorer is a small frontend application that allows users to search for GitHub profiles and view basic information about them.
 
+https://github-user-explorer-seven.vercel.app
 
 ## Tech Stack
 
@@ -23,6 +22,15 @@ GitHub User Explorer is a small frontend application that allows users to search
 - Implemented data fetching and caching using Redux Toolkit Query (RTK Query)
 - Structured the project using Feature-Sliced Design to create scalable architecture
 
-##
+## Project Structure
 
-https://github-user-explorer-seven.vercel.app/
+The project follows the **Feature-Sliced Design (FSD)** architecture.
+
+src
+├── app # application initialization (store, root component)
+├── pages # application pages
+├── entities # business entities (user)
+├── features # user actions (search)
+├── shared # reusable components, hooks, utilities
+└── styles # global styles
+
