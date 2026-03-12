@@ -8,6 +8,7 @@ GitHub User Explorer is a small frontend application that allows users to search
 - React
 - TypeScript
 - Redux Toolkit
+- RTK Query
 - Axios
 - SCSS
 - BEM methodology
