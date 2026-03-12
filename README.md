@@ -26,6 +26,7 @@ https://github-user-explorer-seven.vercel.app
 
 The project follows the **Feature-Sliced Design (FSD)** architecture.
 
+```
 src
 ├── app # application initialization (store, root component)
 ├── pages # application pages
