@@ -1,3 +1,5 @@
+React • TypeScript • RTK Query • Redux Toolkit • Vite • SCSS
+
 # GitHub User Explorer
 
 GitHub User Explorer is a small frontend application that allows users to search for GitHub profiles and view basic information about them.
