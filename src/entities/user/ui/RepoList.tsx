@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { Repo } from '../model/userTypes'
 
 type Props = {
-  repos: Repo[];
+  repos: Repo[]
 }
 
 export const RepoList = ({ repos }: Props) => {

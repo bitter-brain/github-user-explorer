@@ -1,22 +1,41 @@
-import { useAppDispatch, useAppSelector } from '../../app/store'
-import { loadUser, loadRepos } from '../../entities/user/model/userSlice'
-import { clearUser } from '../../entities/user/model/userSlice'
+import { useState } from 'react'
+import { useGetUserQuery, useGetUserReposQuery } from '../../entities/user/api/userApi'
+import type { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 
 export const useUser = () => {
-  const dispatch = useAppDispatch()
+  const [username, setUsername] = useState('')
 
-  const { user, repos, loading, error } = useAppSelector(
-    (state) => state.user
-  )
+  const {
+    data: user,
+    isLoading: userLoading,
+    error: userError,
+  } = useGetUserQuery(username, { skip: !username })
 
-  const searchUser = (username: string) => {
-    if (!username) {
-      dispatch(clearUser());
-      return;
-    }
-    dispatch(loadUser(username))
-    dispatch(loadRepos(username))
+  const {
+    data: repos = [],
+    isLoading: reposLoading,
+  } = useGetUserReposQuery(username, { skip: !username })
+
+  const getErrorMessage = (error: unknown): string => {
+    if (!navigator.onLine) return "Network error"
+    const err = error as FetchBaseQueryError
+    if (err.status === 404) return "User not found"
+    return "Something went wrong"
   }
 
-  return { user, repos, loading, error, searchUser }
+
+  const loading = userLoading || reposLoading
+  const error = userError ? getErrorMessage(userError) : null
+
+  const searchUser = (value: string) => {
+    setUsername(value)
+  }
+
+  return {
+    user: username ? user : undefined,
+    repos: username ? repos : [],
+    loading,
+    error: username ? (userError ? getErrorMessage(userError) : null) : null,
+    searchUser
+  }
 }

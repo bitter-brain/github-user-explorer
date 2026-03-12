@@ -1,17 +1,17 @@
-import axios from 'axios'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import type { User, Repo } from '../model/userTypes'
 
-export const fetchUser = async (username: string): Promise<User> => {
-  const response = await axios.get(
-    `https://api.github.com/users/${username}`
-  )
+export const userApi = createApi({
+  reducerPath: "userApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://api.github.com" }),
+  endpoints: (builder) => ({
+    getUser: builder.query<User, string>({
+      query: (username) => `/users/${username}`,
+    }),
+    getUserRepos: builder.query<Repo[], string>({
+      query: (username) => `/users/${username}/repos?per_page=100`,
+    }),
+  }),
+})
 
-  return response.data
-}
-
-export const fetchUserRepos = async (username: string): Promise<Repo[]> => {
-  const response = await axios.get(
-    `https://api.github.com/users/${username}/repos?per_page=100`
-  )
-  return response.data
-}
+export const { useGetUserQuery, useGetUserReposQuery } = userApi

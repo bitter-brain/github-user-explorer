@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useState } from "react"
-import { debounce } from "../../../shared/lib/debounce"
+import { useCallback, useEffect, useState } from 'react'
+import { debounce } from '../../../shared/lib/debounce'
 
 type Props = {
   onSearch: (value: string) => void
-};
+}
 
 export const SearchBar = ({ onSearch }: Props) => {
   const [value, setValue] = useState("")
